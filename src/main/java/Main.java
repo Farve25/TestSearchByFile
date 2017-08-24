@@ -23,7 +23,7 @@ public class Main extends Application{
 
             primaryStage.setScene(scene);
             primaryStage.setTitle("Search Window");
-            // Иконка в углу окна
+
             //primaryStage.getIcons().add(new Image(this.getClass().getResource("/logo2.png").toString()));
             //primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.show();

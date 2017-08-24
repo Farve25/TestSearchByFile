@@ -8,7 +8,7 @@ public class SearchProcess extends Thread {
     private static String fileSeparator = File.separator;
     private static String ext;
     private File folder;
-    private ExecutorService service = Executors.newFixedThreadPool(5);
+    private ExecutorService service = Executors.newFixedThreadPool(7);
     private List<Future<File>> resultList;
 
 
@@ -18,10 +18,10 @@ public class SearchProcess extends Thread {
         this.folder = folder;
         resultList = new ArrayList<>();
 
-
         SearchByFile.setText(text);
     }
 
+    @Override
     public void run(){
         if (folder.exists()) fileSearch(folder);
 

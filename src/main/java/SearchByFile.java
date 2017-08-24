@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 public class SearchByFile implements Callable<File>{
     private File file;
     private static String text;
+    private static Pattern pattern;
 
     public SearchByFile(File file){
         this.file = file;
@@ -18,29 +19,31 @@ public class SearchByFile implements Callable<File>{
 
         System.out.println(Thread.currentThread().getName());
 
-        Pattern pattern = Pattern.compile(text);
         StringBuilder stringBuilder = new StringBuilder();
+        boolean flag = false;
             try (Scanner scanner = new Scanner(file)) {
                 while (scanner.hasNextLine()) {
-                    stringBuilder.append(scanner.next()).append(" ");
+                        stringBuilder.append(scanner.next()).append(" ");
                 }
 
                 Matcher matcher = pattern.matcher(stringBuilder.toString());
-
-                while (matcher.find()) {
+                if (matcher.find()) {
                     System.out.println("Нашел епт");
-                    return file;
                 }
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-        return null;
+
+            if (flag) return file;
+            else return null;
+
     }
 
 
     public static void setText(String nText){
         text = nText;
+        pattern = Pattern.compile(text);
     }
 
 }
